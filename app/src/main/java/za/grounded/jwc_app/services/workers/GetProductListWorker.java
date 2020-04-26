@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Response;
+import za.grounded.jwc_app.database.JWCDatabase;
+import za.grounded.jwc_app.database.daos.ProductDao;
 import za.grounded.jwc_app.models.Product;
 import za.grounded.jwc_app.services.JWCClientRetro;
 import za.grounded.jwc_app.services.RetrofitClientInstance;
@@ -17,9 +19,12 @@ import za.grounded.jwc_app.services.RetrofitClientInstance;
 public class GetProductListWorker extends Worker {
 
     private JWCClientRetro jwcClientRetro;
+    private ProductDao productDao;
 
     public GetProductListWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
+        JWCDatabase database = JWCDatabase.getJwcDatabase(context);
+        this.productDao = database.productDao();
         this.jwcClientRetro = RetrofitClientInstance.getJWCClient();
     }
 
@@ -32,7 +37,7 @@ public class GetProductListWorker extends Worker {
             if (response.isSuccessful()) {
                 if (response.body() != null ) {
                     for (Product product: response.body()) {
-                        System.out.println(product.getCode() + " : " + product.getItem());
+                        this.productDao.insertProduct(product);
                     }
                     return Result.success();
                 }
