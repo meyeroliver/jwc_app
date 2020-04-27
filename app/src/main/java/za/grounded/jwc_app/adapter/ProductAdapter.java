@@ -16,13 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import za.grounded.jwc_app.R;
-import za.grounded.jwc_app.models.CartItem;
 import za.grounded.jwc_app.models.Product;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductHolder> {
 
     private List<Product> productList = new ArrayList<>();
-    private MutableLiveData<String> onClickedProduct = new MutableLiveData<>();
+    private MutableLiveData<Product> onClickedProduct = new MutableLiveData<>();
 
 
     @NonNull
@@ -51,7 +50,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
         this.productList = productList;
     }
 
-    public LiveData<String> getOnClickedProduct() {
+    public LiveData<Product> getOnClickedProduct() {
         return onClickedProduct;
     }
 
@@ -70,7 +69,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
             addToCart = itemView.findViewById(R.id.add_to_cart);
 
             addToCart.setOnClickListener(v -> {
-                onClickedProduct.setValue(product.get_id());
+                onClickedProduct.setValue(product);
             });
         }
 

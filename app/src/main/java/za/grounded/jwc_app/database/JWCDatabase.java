@@ -7,7 +7,6 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import za.grounded.jwc_app.database.daos.CartItemDao;
-import za.grounded.jwc_app.database.daos.CartItemProductDao;
 import za.grounded.jwc_app.database.daos.ProductDao;
 import za.grounded.jwc_app.models.CartItem;
 import za.grounded.jwc_app.models.Product;
@@ -18,7 +17,6 @@ public abstract class JWCDatabase extends RoomDatabase {
 
     public abstract ProductDao productDao();
     public abstract CartItemDao cartItemDao();
-    public abstract CartItemProductDao cartItemProductDao();
 
     public static  synchronized JWCDatabase getJwcDatabase(Context context) {
         if (jwcDatabase == null) {

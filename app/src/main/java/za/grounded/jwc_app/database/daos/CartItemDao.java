@@ -17,8 +17,8 @@ public interface CartItemDao {
 
     @Query("UPDATE cart_items " +
             "SET quantity = quantity + :val " +
-            "WHERE productId = :productId")
-    void updateCartItemQuantity(String productId, int val);
+            "WHERE id = :id")
+    void updateCartItemQuantity(int id, int val);
 
     @Query("SELECT * FROM cart_items")
     LiveData<List<CartItem>> getCartItemList();

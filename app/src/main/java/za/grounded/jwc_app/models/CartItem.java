@@ -1,6 +1,7 @@
 package za.grounded.jwc_app.models;
 
 import androidx.annotation.NonNull;
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -18,7 +19,9 @@ public class CartItem {
     @PrimaryKey(autoGenerate = true)
     private int id;
     @lombok.NonNull
-    private String productId;
+    @Embedded
+    private Product product;
+    //private String productId;
     @lombok.NonNull
     private int quantity;
 }

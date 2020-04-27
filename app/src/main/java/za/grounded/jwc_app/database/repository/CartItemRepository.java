@@ -7,7 +7,6 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import lombok.NonNull;
 import za.grounded.jwc_app.database.JWCDatabase;
 import za.grounded.jwc_app.database.daos.CartItemDao;
 import za.grounded.jwc_app.models.CartItem;
@@ -22,6 +21,7 @@ public class CartItemRepository {
     public LiveData<List<CartItem>> getCartItemList(){
         return this.cartItemDao.getCartItemList();
     }
+
 
     public void insertCartItem(CartItem cartItem) {
         InsertCartItem task = new InsertCartItem(cartItemDao);
@@ -42,5 +42,4 @@ public class CartItemRepository {
             return null;
         }
     }
-
 }

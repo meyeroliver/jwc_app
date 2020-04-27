@@ -36,7 +36,7 @@ public class LandingViewModel extends AndroidViewModel {
         return this.productRepository.getCategorizedProductList(category);
     }
 
-    public void insertCartItem(String productId){
-        this.cartItemRepository.insertCartItem(new CartItem(productId, 1));
+    public void insertCartItem(Product product){
+        this.cartItemRepository.insertCartItem(new CartItem(product, 1));
     }
 }

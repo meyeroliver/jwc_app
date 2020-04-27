@@ -9,6 +9,7 @@ import android.os.Bundle;
 import java.util.List;
 
 import za.grounded.jwc_app.models.CartItem;
+import za.grounded.jwc_app.models.CartItemProduct;
 import za.grounded.jwc_app.viewmodels.CartViewModel;
 
 public class CartActivity extends AppCompatActivity {
@@ -24,7 +25,7 @@ public class CartActivity extends AppCompatActivity {
 
         this.cartViewModel.getCartItemList().observe(this, cartItems -> {
             for (CartItem cartItem : cartItems) {
-                System.out.println(cartItem.getProductId() + " : " + cartItem.getQuantity());
+                System.out.println(cartItem.getProduct().getItem() + " : " + cartItem.getQuantity());
             }
         });
     }

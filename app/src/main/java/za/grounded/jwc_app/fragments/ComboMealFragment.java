@@ -39,7 +39,6 @@ public class ComboMealFragment extends Fragment {
         landingViewModel =  new ViewModelProvider(Objects.requireNonNull(getActivity())).get(LandingViewModel.class);
         View view = inflater.inflate(R.layout.fragment_combo_meal, container, false);
         recyclerView = view.findViewById(R.id.recycler_view);
-
         return view;
     }
 
@@ -63,10 +62,8 @@ public class ComboMealFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
-        productAdapter.getOnClickedProduct().observe(getViewLifecycleOwner(),s -> {
-            Toast.makeText(ComboMealFragment.super.getContext(), s, Toast.LENGTH_SHORT).show();
-            landingViewModel.insertCartItem(s);
+        productAdapter.getOnClickedProduct().observe(getViewLifecycleOwner(), product -> {
+            landingViewModel.insertCartItem(product);
         });
     }
 }
