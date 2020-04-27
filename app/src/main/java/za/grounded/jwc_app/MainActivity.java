@@ -6,6 +6,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import androidx.work.WorkInfo;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -20,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     private LandingViewModel landingViewModel;
     private ViewPager2 viewPager2;
     private TabLayout tabLayout;
-    //private TabAdapter tabAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         RetrofitClientInstance.setRetrofitInstance();
 
         landingViewModel =  new ViewModelProvider(this).get(LandingViewModel.class);
-
         landingViewModel.getProductList().observe(this, workInfos -> {
             if (workInfos != null) {
                 WorkInfo workInfo = workInfos.get(0);
@@ -61,12 +60,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-       /* landingViewModel.getCategorizedProjectList("combo").observe(this, products -> {
-            for (Product product: products) {
-                System.out.println(product.getCode() + " : " + product.getItem() + " : " + product.getCategory());
-            }
-        });*/
-
     }
 }
