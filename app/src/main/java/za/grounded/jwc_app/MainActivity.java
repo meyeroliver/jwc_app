@@ -1,8 +1,6 @@
 package za.grounded.jwc_app;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 import androidx.work.WorkInfo;
@@ -64,11 +62,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        landingViewModel.getCategorizedProjectList("full").observe(this, products -> {
+       /* landingViewModel.getCategorizedProjectList("combo").observe(this, products -> {
             for (Product product: products) {
                 System.out.println(product.getCode() + " : " + product.getItem() + " : " + product.getCategory());
             }
-        });
+        });*/
 
     }
 }
