@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 import androidx.work.WorkInfo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -12,7 +13,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import za.grounded.jwc_app.adapter.TabAdapter;
-import za.grounded.jwc_app.models.Product;
+import za.grounded.jwc_app.models.CartItem;
 import za.grounded.jwc_app.services.RetrofitClientInstance;
 import za.grounded.jwc_app.viewmodels.LandingViewModel;
 
@@ -60,5 +61,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void viewCart(View view) {
+        Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+        startActivity(intent);
     }
 }

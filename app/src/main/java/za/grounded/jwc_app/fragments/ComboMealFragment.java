@@ -64,7 +64,9 @@ public class ComboMealFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        productAdapter.getOnClickedProduct().observe(getViewLifecycleOwner(),
-                s -> Toast.makeText(ComboMealFragment.super.getContext(), s, Toast.LENGTH_SHORT).show());
+        productAdapter.getOnClickedProduct().observe(getViewLifecycleOwner(),s -> {
+            Toast.makeText(ComboMealFragment.super.getContext(), s, Toast.LENGTH_SHORT).show();
+            landingViewModel.insertCartItem(s);
+        });
     }
 }
