@@ -23,6 +23,10 @@ public class CartViewModel extends AndroidViewModel {
         return this.cartItemRepository.getCartItemList();
     }
 
+    public void updateCartItemQuantity(int id, int val) {
+        this.cartItemRepository.updateCartItemQuantity(id, val);
+    }
+
     public void deleteCartItem(int id) {
         this.cartItemRepository.deleteCartItem(id);
     }

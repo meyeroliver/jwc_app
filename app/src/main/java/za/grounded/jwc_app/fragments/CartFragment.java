@@ -59,7 +59,17 @@ public class CartFragment extends Fragment {
 
         cartAdapter.getDeleteCartItem().observe(getViewLifecycleOwner(), integer -> {
             cartViewModel.deleteCartItem(integer);
-            //System.out.println(integer.toString());
+        });
+
+        cartAdapter.getAddItem().observe(getViewLifecycleOwner(), integer -> {
+            cartViewModel.updateCartItemQuantity(integer, 1);
+        });
+
+        /**
+         * Check if the current quantity is zero
+         */
+        cartAdapter.getRemoveItem().observe(getViewLifecycleOwner(), integer -> {
+            cartViewModel.updateCartItemQuantity(integer, -1);
         });
     }
 }

@@ -127,10 +127,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.add_one:
-                    System.out.println("Plus one " + cartItem.getProduct().getItem());
+                    //System.out.println("Plus one " + cartItem.getProduct().getItem());
+                    addItem.setValue(cartItem.getId());
                     break;
                 case R.id.remove_one:
-                    System.out.println("Minus one " + cartItem.getProduct().getItem());
+                    //System.out.println("Minus one " + cartItem.getProduct().getItem());
+                    removeItem.setValue(cartItem.getId());
                     break;
                 case R.id.delete_cart_item:
                     deleteItem();

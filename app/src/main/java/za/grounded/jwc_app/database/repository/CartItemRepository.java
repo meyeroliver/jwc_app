@@ -44,6 +44,29 @@ public class CartItemRepository {
         }
     }
 
+    public void updateCartItemQuantity(int id, int val) {
+        UpdateCartItemQuantity task = new UpdateCartItemQuantity(cartItemDao);
+        Integer[] integers = {id, val};
+        task.execute(integers);
+
+    }
+
+    private static class UpdateCartItemQuantity extends AsyncTask <Integer, Void, Void> {
+
+        private CartItemDao cartItemDao;
+
+        public UpdateCartItemQuantity(CartItemDao cartItemDao) {
+            this.cartItemDao = cartItemDao;
+        }
+
+
+        @Override
+        protected Void doInBackground(Integer... integers) {
+            this.cartItemDao.updateCartItemQuantity(integers[0], integers[1]);
+            return null;
+        }
+    }
+
     public void deleteCartItem(int id) {
         DeleteCartItem task = new DeleteCartItem(cartItemDao);
         task.execute(id);
