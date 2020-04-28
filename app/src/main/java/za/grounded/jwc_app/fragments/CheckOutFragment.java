@@ -41,7 +41,11 @@ public class CheckOutFragment extends Fragment {
         super.onStart();
 
         this.cartViewModel.calculateTotalCartPrice().observe(getViewLifecycleOwner(), aDouble -> {
-            totalTextView.setText("R " + aDouble);
+            Double val = aDouble;
+            if (val == null)
+                val = 0.0;
+            totalTextView.setText("R " + val);
+
         });
     }
 }
