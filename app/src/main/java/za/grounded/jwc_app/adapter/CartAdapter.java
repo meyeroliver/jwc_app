@@ -1,5 +1,6 @@
 package za.grounded.jwc_app.adapter;
 
+import android.provider.ContactsContract;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
@@ -23,8 +24,9 @@ import za.grounded.jwc_app.models.CartItem;
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
 
     private List<CartItem> cartItemList = new ArrayList<>();
-    private MutableLiveData<Boolean> addItem = new MutableLiveData<>();
-    private MutableLiveData<Boolean> removeItem = new MutableLiveData<>();
+    private MutableLiveData<Integer> addItem = new MutableLiveData<>();
+    private MutableLiveData<Integer> removeItem = new MutableLiveData<>();
+    private MutableLiveData<Integer> deleteCartItem = new MutableLiveData<>();
 
     @NonNull
     @Override
@@ -63,20 +65,28 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
         this.cartItemList = cartItemList;
     }
 
-    public LiveData<Boolean> getAddItem() {
+    public LiveData<Integer> getAddItem() {
         return addItem;
     }
 
-    public void setAddItem(boolean addItem) {
+    public void setAddItem(int addItem) {
         this.addItem.setValue(addItem);
     }
 
-    public LiveData<Boolean> getRemoveItem() {
+    public LiveData<Integer> getRemoveItem() {
         return removeItem;
     }
 
-    public void setRemoveItem(boolean removeItem) {
+    public void setRemoveItem(int removeItem) {
         this.removeItem.setValue(removeItem);
+    }
+
+    public LiveData<Integer> getDeleteCartItem() {
+        return deleteCartItem;
+    }
+
+    public void setDeleteCartItem(int deleteCartItem) {
+        this.deleteCartItem.setValue(deleteCartItem);
     }
 
     public class CartHolder extends RecyclerView.ViewHolder  {
@@ -85,8 +95,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
         private TextView cartTitle;
         private TextView cartPrice;
         private TextView quantity;
-        private ImageButton removeButton;
-        private ImageButton addButton;
+        private ImageButton removeOne;
+        private ImageButton addOne;
+        private ImageButton deleteCartItem;
 
         private CartItem cartItem;
 
@@ -100,8 +111,31 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
            cartTitle = view.findViewById(R.id.cart_item_name);
            cartPrice = view.findViewById(R.id.cart_item_price);
            quantity = view.findViewById(R.id.quantity);
-           removeButton = view.findViewById(R.id.remove_one);
-           addButton = view.findViewById(R.id.add_one);
+           removeOne = view.findViewById(R.id.remove_one);
+           addOne = view.findViewById(R.id.add_one);
+           deleteCartItem = view.findViewById(R.id.delete_cart_item);
+
+           removeOne.setOnClickListener(v -> {
+               System.out.println("Minus one " + cartItem.getProduct().getItem());
+           });
+
+           addOne.setOnClickListener(v -> {
+               System.out.println("Plus one " + cartItem.getProduct().getItem());
+           });
+
+           deleteCartItem.setOnClickListener(v -> {
+               deleteItem();
+           });
+        }
+
+        /**
+         * Remove item from the database
+         */
+        private void deleteItem(){
+
+            setDeleteCartItem(cartItem.getId());
+            notifyItemRemoved(getAdapterPosition());
+            notifyItemRangeChanged(getAdapterPosition(), cartItemList.size());
         }
 
         public void setCartItem(CartItem cartItem) {

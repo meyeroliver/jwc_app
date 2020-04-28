@@ -22,4 +22,8 @@ public class CartViewModel extends AndroidViewModel {
     public LiveData<List<CartItem>> getCartItemList(){
         return this.cartItemRepository.getCartItemList();
     }
+
+    public void deleteCartItem(int id) {
+        this.cartItemRepository.deleteCartItem(id);
+    }
 }

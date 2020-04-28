@@ -55,6 +55,7 @@ public class ComboMealFragment extends Fragment {
             if (products != null) {
                 productAdapter.setProductList(products);
                 productAdapter.notifyDataSetChanged();
+
             }
         });
     }
@@ -63,7 +64,11 @@ public class ComboMealFragment extends Fragment {
     public void onStart() {
         super.onStart();
         productAdapter.getOnClickedProduct().observe(getViewLifecycleOwner(), product -> {
-            landingViewModel.insertCartItem(product);
+            if (product != null) {
+                landingViewModel.insertCartItem(product);
+                productAdapter.setOnClickedProduct(null);
+            }
+
         });
     }
 }

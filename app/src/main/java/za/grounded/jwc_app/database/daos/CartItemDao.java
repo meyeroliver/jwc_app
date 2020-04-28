@@ -22,4 +22,7 @@ public interface CartItemDao {
 
     @Query("SELECT * FROM cart_items")
     LiveData<List<CartItem>> getCartItemList();
+
+    @Query("DELETE FROM cart_items WHERE id = :id")
+    void deleteCartItem(int id);
 }

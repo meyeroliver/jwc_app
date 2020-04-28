@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Delete;
 
 import java.util.List;
 
@@ -39,6 +40,26 @@ public class CartItemRepository {
         @Override
         protected Void doInBackground(CartItem... cartItems) {
             this.cartItemDao.insertCartItem(cartItems[0]);
+            return null;
+        }
+    }
+
+    public void deleteCartItem(int id) {
+        DeleteCartItem task = new DeleteCartItem(cartItemDao);
+        task.execute(id);
+    }
+
+    private static class DeleteCartItem extends AsyncTask<Integer, Void, Void> {
+
+        private CartItemDao cartItemDao;
+
+        public DeleteCartItem(CartItemDao cartItemDao) {
+            this.cartItemDao = cartItemDao;
+        }
+
+        @Override
+        protected Void doInBackground(Integer... integers) {
+            this.cartItemDao.deleteCartItem(integers[0]);
             return null;
         }
     }

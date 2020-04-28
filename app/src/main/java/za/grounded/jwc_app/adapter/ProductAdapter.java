@@ -54,7 +54,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
         return onClickedProduct;
     }
 
-    public class ProductHolder extends RecyclerView.ViewHolder {
+    public void setOnClickedProduct(Product onClickedProduct) {
+        this.onClickedProduct.setValue(onClickedProduct);
+    }
+
+    public class ProductHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private TextView title;
         private TextView price;
@@ -64,17 +68,29 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
         public ProductHolder(@NonNull View itemView) {
             super(itemView);
 
+            this.initViews();
+            this.setOnClickListener();
+        }
+
+        private void initViews(){
             title = itemView.findViewById(R.id.product_name);
             price = itemView.findViewById(R.id.product_price);
             addToCart = itemView.findViewById(R.id.add_to_cart);
+        }
 
-            addToCart.setOnClickListener(v -> {
-                onClickedProduct.setValue(product);
-            });
+        private void setOnClickListener(){
+            this.addToCart.setOnClickListener(this);
         }
 
         public void setProduct(Product product) {
             this.product = product;
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (v.getId() == R.id.add_to_cart) {
+                onClickedProduct.setValue(product);
+            }
         }
     }
 }
