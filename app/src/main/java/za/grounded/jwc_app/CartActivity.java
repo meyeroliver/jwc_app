@@ -1,6 +1,8 @@
 package za.grounded.jwc_app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -8,6 +10,7 @@ import android.os.Bundle;
 
 import java.util.List;
 
+import za.grounded.jwc_app.fragments.CartFragment;
 import za.grounded.jwc_app.models.CartItem;
 import za.grounded.jwc_app.models.CartItemProduct;
 import za.grounded.jwc_app.viewmodels.CartViewModel;
@@ -23,10 +26,16 @@ public class CartActivity extends AppCompatActivity {
 
         this.cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
 
-        this.cartViewModel.getCartItemList().observe(this, cartItems -> {
+        /*this.cartViewModel.getCartItemList().observe(this, cartItems -> {
             for (CartItem cartItem : cartItems) {
                 System.out.println(cartItem.getProduct().getItem() + " : " + cartItem.getQuantity());
             }
-        });
+        });*/
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction
+                .replace(R.id.cart, new CartFragment())
+                .commit();
     }
 }
