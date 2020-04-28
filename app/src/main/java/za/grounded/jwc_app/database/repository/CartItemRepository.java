@@ -23,6 +23,10 @@ public class CartItemRepository {
         return this.cartItemDao.getCartItemList();
     }
 
+    public LiveData<Double> calculateTotalCartPrice() {
+        return this.cartItemDao.calculateTotalCartPrice();
+    }
+
 
     public void insertCartItem(CartItem cartItem) {
         InsertCartItem task = new InsertCartItem(cartItemDao);

@@ -27,6 +27,10 @@ public class CartViewModel extends AndroidViewModel {
         this.cartItemRepository.updateCartItemQuantity(id, val);
     }
 
+    public LiveData<Double> calculateTotalCartPrice() {
+        return this.cartItemRepository.calculateTotalCartPrice();
+    }
+
     public void deleteCartItem(int id) {
         this.cartItemRepository.deleteCartItem(id);
     }

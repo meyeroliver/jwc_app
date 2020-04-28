@@ -11,6 +11,7 @@ import android.os.Bundle;
 import java.util.List;
 
 import za.grounded.jwc_app.fragments.CartFragment;
+import za.grounded.jwc_app.fragments.CheckOutFragment;
 import za.grounded.jwc_app.models.CartItem;
 import za.grounded.jwc_app.models.CartItemProduct;
 import za.grounded.jwc_app.viewmodels.CartViewModel;
@@ -26,16 +27,11 @@ public class CartActivity extends AppCompatActivity {
 
         this.cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
 
-        /*this.cartViewModel.getCartItemList().observe(this, cartItems -> {
-            for (CartItem cartItem : cartItems) {
-                System.out.println(cartItem.getProduct().getItem() + " : " + cartItem.getQuantity());
-            }
-        });*/
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction
                 .replace(R.id.cart, new CartFragment())
+                .replace(R.id.checkout_view, new CheckOutFragment())
                 .commit();
     }
 }
