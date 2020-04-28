@@ -68,7 +68,6 @@ public class ComboMealFragment extends Fragment {
                 landingViewModel.insertCartItem(product);
                 productAdapter.setOnClickedProduct(null);
             }
-
         });
     }
 }

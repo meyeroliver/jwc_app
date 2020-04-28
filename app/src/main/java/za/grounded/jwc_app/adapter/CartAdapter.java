@@ -89,7 +89,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
         this.deleteCartItem.setValue(deleteCartItem);
     }
 
-    public class CartHolder extends RecyclerView.ViewHolder  {
+    public class CartHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView imageView;
         private TextView cartTitle;
@@ -105,6 +105,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
             super(itemView);
 
             this.initViews(itemView);
+            this.setOnClickListeners();
         }
 
         private void initViews(View view){
@@ -114,25 +115,30 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
            removeOne = view.findViewById(R.id.remove_one);
            addOne = view.findViewById(R.id.add_one);
            deleteCartItem = view.findViewById(R.id.delete_cart_item);
-
-           removeOne.setOnClickListener(v -> {
-               System.out.println("Minus one " + cartItem.getProduct().getItem());
-           });
-
-           addOne.setOnClickListener(v -> {
-               System.out.println("Plus one " + cartItem.getProduct().getItem());
-           });
-
-           deleteCartItem.setOnClickListener(v -> {
-               deleteItem();
-           });
         }
 
-        /**
-         * Remove item from the database
-         */
-        private void deleteItem(){
+        private void setOnClickListeners() {
+            removeOne.setOnClickListener(this);
+            addOne.setOnClickListener(this);
+            deleteCartItem.setOnClickListener(this);
+        }
 
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.add_one:
+                    System.out.println("Plus one " + cartItem.getProduct().getItem());
+                    break;
+                case R.id.remove_one:
+                    System.out.println("Minus one " + cartItem.getProduct().getItem());
+                    break;
+                case R.id.delete_cart_item:
+                    deleteItem();
+                    break;
+            }
+        }
+
+        private void deleteItem(){
             setDeleteCartItem(cartItem.getId());
             notifyItemRemoved(getAdapterPosition());
             notifyItemRangeChanged(getAdapterPosition(), cartItemList.size());

@@ -57,7 +57,10 @@ public class FullMealFragment extends Fragment {
     public void onStart() {
         super.onStart();
         productAdapter.getOnClickedProduct().observe(getViewLifecycleOwner(), product -> {
-            landingViewModel.insertCartItem(product);
+            if (product != null) {
+                landingViewModel.insertCartItem(product);
+                productAdapter.setOnClickedProduct(null);
+            }
         });
     }
 }

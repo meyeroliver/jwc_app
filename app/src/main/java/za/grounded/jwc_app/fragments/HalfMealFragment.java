@@ -57,8 +57,11 @@ public class HalfMealFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        productAdapter.getOnClickedProduct().observe(getViewLifecycleOwner(),product -> {
-            landingViewModel.insertCartItem(product);
+        productAdapter.getOnClickedProduct().observe(getViewLifecycleOwner(), product -> {
+            if (product != null) {
+                landingViewModel.insertCartItem(product);
+                productAdapter.setOnClickedProduct(null);
+            }
         });
     }
 }
