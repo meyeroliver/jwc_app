@@ -1,6 +1,7 @@
 package za.grounded.jwc_app.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 import androidx.work.WorkInfo;
@@ -12,9 +13,15 @@ import android.view.View;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import za.grounded.jwc_app.R;
 import za.grounded.jwc_app.services.RetrofitClientInstance;
 import za.grounded.jwc_app.ui.adapter.TabAdapter;
+import za.grounded.jwc_app.ui.fragments.ComboMealFragment;
+import za.grounded.jwc_app.ui.fragments.FullMealFragment;
+import za.grounded.jwc_app.ui.fragments.HalfMealFragment;
 import za.grounded.jwc_app.viewmodels.LandingViewModel;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,7 +36,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         viewPager2 = findViewById(R.id.viewpager);
-        viewPager2.setAdapter(new TabAdapter(this));
+        List<Fragment> fragmentList = new ArrayList<>();
+        fragmentList.add(new ComboMealFragment());
+        fragmentList.add(new FullMealFragment());
+        fragmentList.add(new HalfMealFragment());
+        viewPager2.setAdapter(new TabAdapter(this, fragmentList));
 
         tabLayout = findViewById(R.id.tab_layout);
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager2,
