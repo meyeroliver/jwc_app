@@ -6,4 +6,8 @@
     <string name="current_price"><u>Price</u></string>
     <string name="view_cart">VIEW CART</string>
     <string name="place_order">Place Order</string>
+    <string name="title">Title</string>
+    <string name="price">Price</string>
+    <string name="qty">Qty</string>
+    <string name="cost">Cost</string>
 </resources>

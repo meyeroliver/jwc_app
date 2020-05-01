@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        >
+
+        <TextView
+            android:id="@+id/receipt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_toStartOf="@id/receipt_price"
+            android:layout_toLeftOf="@id/receipt_price"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:maxLines="2"
+            android:ellipsize="end"
+            />
+
+        <TextView
+            android:id="@+id/receipt_price"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@id/receipt_quantity"
+            android:layout_toLeftOf="@id/receipt_quantity"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:text="@string/price"
+            android:textAppearance="?attr/textAppearanceBody1"
+             />
+        <TextView
+            android:id="@+id/receipt_quantity"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@id/receipt_cost"
+            android:layout_toLeftOf="@id/receipt_cost"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
+
+            android:gravity="center"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:text="@string/qty"
+            />
+
+        <TextView
+            android:id="@+id/receipt_cost"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
+
+            android:gravity="center"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:text="@string/cost"
+             />
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

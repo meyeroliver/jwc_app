@@ -1,19 +1,15 @@
-package za.grounded.jwc_app;
+package za.grounded.jwc_app.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 
-import java.util.List;
-
-import za.grounded.jwc_app.fragments.CartFragment;
-import za.grounded.jwc_app.fragments.CheckOutFragment;
-import za.grounded.jwc_app.models.CartItem;
-import za.grounded.jwc_app.models.CartItemProduct;
+import za.grounded.jwc_app.R;
+import za.grounded.jwc_app.ui.fragments.CartFragment;
+import za.grounded.jwc_app.ui.fragments.CheckOutFragment;
 import za.grounded.jwc_app.viewmodels.CartViewModel;
 
 public class CartActivity extends AppCompatActivity {
@@ -34,4 +30,6 @@ public class CartActivity extends AppCompatActivity {
                 .replace(R.id.checkout_view, new CheckOutFragment())
                 .commit();
     }
+
+
 }

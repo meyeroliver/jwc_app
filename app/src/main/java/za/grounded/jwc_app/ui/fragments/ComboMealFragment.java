@@ -1,4 +1,4 @@
-package za.grounded.jwc_app.fragments;
+package za.grounded.jwc_app.ui.fragments;
 
 import android.os.Bundle;
 
@@ -12,15 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.Objects;
 
 import za.grounded.jwc_app.R;
-import za.grounded.jwc_app.adapter.ProductAdapter;
+import za.grounded.jwc_app.ui.adapter.ProductAdapter;
 import za.grounded.jwc_app.viewmodels.LandingViewModel;
 
-public class HalfMealFragment extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class ComboMealFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private ProductAdapter productAdapter;
@@ -29,10 +31,8 @@ public class HalfMealFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         landingViewModel =  new ViewModelProvider(Objects.requireNonNull(getActivity())).get(LandingViewModel.class);
-
-        View view = inflater.inflate(R.layout.fragment_half_meal, container, false);
+        View view = inflater.inflate(R.layout.fragment_combo_meal, container, false);
         recyclerView = view.findViewById(R.id.recycler_view);
         return view;
     }
@@ -41,15 +41,16 @@ public class HalfMealFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(HalfMealFragment.super.getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(ComboMealFragment.super.getContext()));
         recyclerView.setHasFixedSize(true);
         productAdapter = new ProductAdapter();
         recyclerView.setAdapter(productAdapter);
 
-        landingViewModel.getCategorizedProjectList("half").observe(getViewLifecycleOwner(), products -> {
+        landingViewModel.getCategorizedProjectList("combo").observe(getViewLifecycleOwner(), products -> {
             if (products != null) {
                 productAdapter.setProductList(products);
                 productAdapter.notifyDataSetChanged();
+
             }
         });
     }

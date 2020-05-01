@@ -1,11 +1,10 @@
-package za.grounded.jwc_app.fragments;
+package za.grounded.jwc_app.ui.fragments;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +16,7 @@ import android.view.ViewGroup;
 import java.util.Objects;
 
 import za.grounded.jwc_app.R;
-import za.grounded.jwc_app.adapter.CartAdapter;
+import za.grounded.jwc_app.ui.adapter.CartAdapter;
 import za.grounded.jwc_app.viewmodels.CartViewModel;
 
 /**

@@ -1,19 +1,13 @@
-package za.grounded.jwc_app.adapter;
+package za.grounded.jwc_app.ui.adapter;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import za.grounded.jwc_app.fragments.ComboMealFragment;
-import za.grounded.jwc_app.fragments.FullMealFragment;
-import za.grounded.jwc_app.fragments.HalfMealFragment;
+import za.grounded.jwc_app.ui.fragments.ComboMealFragment;
+import za.grounded.jwc_app.ui.fragments.FullMealFragment;
+import za.grounded.jwc_app.ui.fragments.HalfMealFragment;
 
 public class TabAdapter extends FragmentStateAdapter {
 

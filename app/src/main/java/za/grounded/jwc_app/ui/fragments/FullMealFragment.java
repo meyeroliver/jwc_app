@@ -1,4 +1,4 @@
-package za.grounded.jwc_app.fragments;
+package za.grounded.jwc_app.ui.fragments;
 
 import android.os.Bundle;
 
@@ -12,12 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.Objects;
 
 import za.grounded.jwc_app.R;
-import za.grounded.jwc_app.adapter.ProductAdapter;
+import za.grounded.jwc_app.ui.adapter.ProductAdapter;
 import za.grounded.jwc_app.viewmodels.LandingViewModel;
 
 public class FullMealFragment extends Fragment {

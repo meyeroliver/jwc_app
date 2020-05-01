@@ -1,4 +1,4 @@
-package za.grounded.jwc_app;
+package za.grounded.jwc_app.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -12,9 +12,9 @@ import android.view.View;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-import za.grounded.jwc_app.adapter.TabAdapter;
-import za.grounded.jwc_app.models.CartItem;
+import za.grounded.jwc_app.R;
 import za.grounded.jwc_app.services.RetrofitClientInstance;
+import za.grounded.jwc_app.ui.adapter.TabAdapter;
 import za.grounded.jwc_app.viewmodels.LandingViewModel;
 
 public class MainActivity extends AppCompatActivity {

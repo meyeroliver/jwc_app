@@ -1,6 +1,5 @@
-package za.grounded.jwc_app.adapter;
+package za.grounded.jwc_app.ui.adapter;
 
-import android.provider.ContactsContract;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
@@ -127,11 +126,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.add_one:
-                    //System.out.println("Plus one " + cartItem.getProduct().getItem());
                     addItem.setValue(cartItem.getId());
                     break;
                 case R.id.remove_one:
-                    //System.out.println("Minus one " + cartItem.getProduct().getItem());
                     removeItem.setValue(cartItem.getId());
                     break;
                 case R.id.delete_cart_item:

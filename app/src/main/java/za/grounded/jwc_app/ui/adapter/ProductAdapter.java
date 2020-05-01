@@ -1,4 +1,4 @@
-package za.grounded.jwc_app.adapter;
+package za.grounded.jwc_app.ui.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;

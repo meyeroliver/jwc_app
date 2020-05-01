@@ -41,6 +41,12 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
 
     /**
+     * Google
+     */
+    implementation 'com.google.android.gms:play-services-auth:18.0.0'
+
+
+    /**
      * WorkManager
      */
     implementation "androidx.work:work-runtime:2.3.4"
