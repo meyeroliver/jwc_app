@@ -42,4 +42,25 @@ public class TransactionRepository {
             return this.transactionDao.insertTransaction(transactions[0]);
         }
     }
+
+    public void updateTransactionTotal(Long id, Double total){
+        UpdateTransactionTotal task = new UpdateTransactionTotal(this.transactionDao);
+        task.execute(new Transaction(id, total));
+    }
+
+    private static class UpdateTransactionTotal extends AsyncTask<Transaction, Void, Void> {
+        private TransactionDao transactionDao;
+
+        public UpdateTransactionTotal(TransactionDao transactionDao) {
+            this.transactionDao = transactionDao;
+        }
+
+        @Override
+        protected Void doInBackground(Transaction... transactions) {
+
+            Transaction transaction =  transactions[0];
+            this.transactionDao.updateTransactionTotal(transaction.getRoom_id(), transaction.getTotal());
+            return null;
+        }
+    };
 }

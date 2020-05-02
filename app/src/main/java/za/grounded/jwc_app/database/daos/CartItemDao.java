@@ -27,6 +27,6 @@ public interface CartItemDao {
     @Query("DELETE FROM cart_items WHERE id = :id")
     void deleteCartItem(String id);
 
-    @Query("SELECT SUM(quantity * price) AS TOTAL FROM cart_items")
-    LiveData<Double> calculateTotalCartPrice();
+    @Query("SELECT SUM(quantity * price) AS TOTAL FROM cart_items WHERE transaction_id = :transactionId")
+    LiveData<Double> calculateTotalCartPrice(Long transactionId);
 }

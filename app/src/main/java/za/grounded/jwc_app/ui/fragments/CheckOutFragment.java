@@ -49,6 +49,7 @@ public class CheckOutFragment extends Fragment {
             if (val == null)
                 val = 0.0;
             totalTextView.setText("R " + val);
+            cartViewModel.updateTransactionTotal(val);
         });
 
         placeOrderButton.setOnClickListener(v -> {

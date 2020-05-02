@@ -18,7 +18,7 @@ public interface TransactionDao {
     @Query("UPDATE transactions " +
             "SET total = :total " +
             "WHERE room_id = :id")
-    void updateTransactionTotal(Long id, Long total);
+    void updateTransactionTotal(Long id, Double total);
 
     @Query("UPDATE transactions " +
             "SET transactionDate = :transactionDate " +

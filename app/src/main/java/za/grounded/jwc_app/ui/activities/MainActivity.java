@@ -92,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        this.landingViewModel.getReactiveTransactionCartItems().observe(this, transactionAndCartItems -> {
-            if (transactionAndCartItems.getCartItemList().size() > 0) {
+        this.landingViewModel.calculateTotalCartPrice().observe(this, aDouble -> {
+            if (aDouble != null && aDouble > 0) {
                 viewCartButton.setVisibility(View.VISIBLE);
             } else {
                 viewCartButton.setVisibility(View.GONE);

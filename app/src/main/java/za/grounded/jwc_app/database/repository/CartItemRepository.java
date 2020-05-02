@@ -23,8 +23,8 @@ public class CartItemRepository {
         return this.cartItemDao.getCartItemList();
     }
 
-    public LiveData<Double> calculateTotalCartPrice() {
-        return this.cartItemDao.calculateTotalCartPrice();
+    public LiveData<Double> calculateTotalCartPrice(Long transactionId) {
+        return this.cartItemDao.calculateTotalCartPrice(transactionId);
     }
 
 
