@@ -1,12 +1,12 @@
 package za.grounded.jwc_app.models;
 
-import androidx.annotation.NonNull;
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
@@ -18,10 +18,10 @@ import lombok.Setter;
 public class CartItem {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    @lombok.NonNull
+    private int transaction_id;
+    @NonNull
     @Embedded
     private Product product;
-    //private String productId;
-    @lombok.NonNull
+    @NonNull
     private int quantity;
 }

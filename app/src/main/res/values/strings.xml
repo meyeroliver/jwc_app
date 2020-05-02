@@ -17,4 +17,6 @@
     <string name="name">Name</string>
     <string name="surname">Surname</string>
     <string name="sign_up">Sign Up</string>
+    <string name="how_may_i_help_you">How May I help You ?</string>
+    <string name="transaction_id">TRANSACTION_ID</string>
 </resources>

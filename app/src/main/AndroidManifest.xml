@@ -11,12 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/JWCTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activities.LoginActivty">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".ui.activities.WelcomeActivity"> <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
+        <activity android:name=".ui.activities.LoginActivty" />
         <activity android:name=".ui.activities.ReceiptActivity" />
         <activity android:name=".ui.activities.CartActivity" />
         <activity android:name=".ui.activities.MainActivity"/>

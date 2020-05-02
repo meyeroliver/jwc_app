@@ -37,7 +37,7 @@ public class CartItemRepository {
 
         private CartItemDao cartItemDao;
 
-        public InsertCartItem(CartItemDao cartItemDao) {
+        InsertCartItem(CartItemDao cartItemDao) {
             this.cartItemDao = cartItemDao;
         }
 
