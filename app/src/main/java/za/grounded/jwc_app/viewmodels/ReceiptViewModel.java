@@ -16,6 +16,7 @@ import za.grounded.jwc_app.models.TransactionAndCartItems;
 public class ReceiptViewModel extends AndroidViewModel {
     private CartItemRepository cartItemRepository;
     private TransactionCartItemRepository transactionCartItemRepository;
+    private Long transactionId;
 
     public ReceiptViewModel(@NonNull Application application) {
         super(application);
@@ -23,11 +24,19 @@ public class ReceiptViewModel extends AndroidViewModel {
         this.transactionCartItemRepository = new TransactionCartItemRepository(application);
     }
 
+    public Long getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(Long transactionId) {
+        this.transactionId = transactionId;
+    }
+
     public LiveData<List<CartItem>> getCartItemList(){
         return this.cartItemRepository.getCartItemList();
     }
 
-    public TransactionAndCartItems getTransactionAndCartItemsById(int transactionId){
-        return this.transactionCartItemRepository.getTransactionCartItemsById(transactionId);
+    public TransactionAndCartItems getTransactionAndCartItemsById(){
+        return this.transactionCartItemRepository.getTransactionCartItemsById(this.transactionId.intValue());
     }
 }

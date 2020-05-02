@@ -53,6 +53,7 @@ public class CheckOutFragment extends Fragment {
 
         placeOrderButton.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ReceiptActivity.class);
+            intent.putExtra(getString(R.string.transaction_id), this.cartViewModel.getTransactionId());
             startActivity(intent);
         });
     }

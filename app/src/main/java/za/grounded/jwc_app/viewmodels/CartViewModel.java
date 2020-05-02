@@ -13,10 +13,19 @@ import za.grounded.jwc_app.models.CartItem;
 
 public class CartViewModel extends AndroidViewModel {
     private CartItemRepository cartItemRepository;
+    private Long transactionId;
 
     public CartViewModel(@NonNull Application application) {
         super(application);
         this.cartItemRepository = new CartItemRepository(application);
+    }
+
+    public Long getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(Long transactionId) {
+        this.transactionId = transactionId;
     }
 
     public LiveData<List<CartItem>> getCartItemList(){

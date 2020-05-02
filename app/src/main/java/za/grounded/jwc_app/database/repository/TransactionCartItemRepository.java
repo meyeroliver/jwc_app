@@ -3,6 +3,8 @@ package za.grounded.jwc_app.database.repository;
 import android.app.Application;
 import android.os.AsyncTask;
 
+import java.util.concurrent.ExecutionException;
+
 import za.grounded.jwc_app.database.JWCDatabase;
 import za.grounded.jwc_app.database.daos.TransactionCartItemDao;
 import za.grounded.jwc_app.models.TransactionAndCartItems;
@@ -17,7 +19,15 @@ public class TransactionCartItemRepository {
 
     public TransactionAndCartItems getTransactionCartItemsById(int transactionId){
         GetTransTransactionCartItemsById task = new GetTransTransactionCartItemsById(this.transactionCartItemDao);
-        return task.doInBackground(transactionId);
+        task.execute(transactionId);
+        try {
+            return task.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private static class GetTransTransactionCartItemsById extends AsyncTask<Integer, Void, TransactionAndCartItems> {

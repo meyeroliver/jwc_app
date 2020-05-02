@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import za.grounded.jwc_app.R;
 import za.grounded.jwc_app.ui.fragments.ReceiptFragment;
@@ -21,6 +22,7 @@ public class ReceiptActivity extends AppCompatActivity {
         setContentView(R.layout.activity_receipt);
 
         this.receiptViewModel = new ViewModelProvider(this).get(ReceiptViewModel.class);
+        this.receiptViewModel.setTransactionId(getIntent().getLongExtra(getString(R.string.transaction_id), -1));
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -34,6 +36,6 @@ public class ReceiptActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        //this.receiptViewModel.getTransactionAndCartItemsById()
+        //Toast.makeText(this, this.receiptViewModel.getTransactionId().toString(), Toast.LENGTH_SHORT).show();
     }
 }

@@ -22,6 +22,7 @@ public class CartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
 
         this.cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
+        this.cartViewModel.setTransactionId(getIntent().getLongExtra(getString(R.string.transaction_id), -1));
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -30,6 +31,4 @@ public class CartActivity extends AppCompatActivity {
                 .replace(R.id.checkout_view, new CheckOutFragment())
                 .commit();
     }
-
-
 }

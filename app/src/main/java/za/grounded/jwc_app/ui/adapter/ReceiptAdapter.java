@@ -18,6 +18,10 @@ public class ReceiptAdapter extends RecyclerView.Adapter<ReceiptAdapter.ReceiptH
 
     List<CartItem> cartItemList = new ArrayList<>();
 
+    public ReceiptAdapter(List<CartItem> cartItemList) {
+        this.cartItemList = cartItemList;
+    }
+
     @NonNull
     @Override
     public ReceiptHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

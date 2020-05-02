@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void viewCart(View view) {
         Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+        intent.putExtra(getString(R.string.transaction_id), this.landingViewModel.getTransactionId());
         startActivity(intent);
     }
 }

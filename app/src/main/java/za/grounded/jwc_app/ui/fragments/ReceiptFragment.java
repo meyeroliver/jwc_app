@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import java.util.Objects;
 
 import za.grounded.jwc_app.R;
+import za.grounded.jwc_app.models.CartItem;
+import za.grounded.jwc_app.models.TransactionAndCartItems;
 import za.grounded.jwc_app.ui.adapter.ReceiptAdapter;
 import za.grounded.jwc_app.viewmodels.ReceiptViewModel;
 
@@ -44,15 +46,7 @@ public class ReceiptFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView.setLayoutManager(new LinearLayoutManager(ReceiptFragment.super.getContext()));
         recyclerView.setHasFixedSize(true);
-        receiptAdapter = new ReceiptAdapter();
+        receiptAdapter = new ReceiptAdapter(this.receiptViewModel.getTransactionAndCartItemsById().getCartItemList());
         recyclerView.setAdapter(receiptAdapter);
-
-        receiptViewModel.getCartItemList().observe(getViewLifecycleOwner(), cartItems -> {
-            if (cartItems != null) {
-                receiptAdapter.setCartItemList(cartItems);
-                receiptAdapter.notifyDataSetChanged();
-            }
-        });
     }
-
 }
