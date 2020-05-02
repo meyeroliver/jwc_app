@@ -24,5 +24,5 @@ public class CartItem {
     @Embedded
     private Product product;
     @NonNull
-    private int quantity;
+    private Long quantity;
 }

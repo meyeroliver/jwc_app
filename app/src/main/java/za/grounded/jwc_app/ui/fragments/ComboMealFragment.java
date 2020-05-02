@@ -51,7 +51,6 @@ public class ComboMealFragment extends Fragment {
             if (products != null) {
                 productAdapter.setProductList(products);
                 productAdapter.notifyDataSetChanged();
-
             }
         });
     }
@@ -59,11 +58,8 @@ public class ComboMealFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        Toast.makeText(getActivity(), this.landingViewModel.getTransactionId().toString(), Toast.LENGTH_SHORT).show();
-
         productAdapter.getOnClickedProduct().observe(getViewLifecycleOwner(), product -> {
             if (product != null) {
-
                 landingViewModel.insertCartItem(product);
                 productAdapter.setOnClickedProduct(null);
             }

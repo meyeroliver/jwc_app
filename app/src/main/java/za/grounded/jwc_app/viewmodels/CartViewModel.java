@@ -8,16 +8,21 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+import za.grounded.jwc_app.database.daos.TransactionCartItemDao;
 import za.grounded.jwc_app.database.repository.CartItemRepository;
+import za.grounded.jwc_app.database.repository.TransactionCartItemRepository;
 import za.grounded.jwc_app.models.CartItem;
+import za.grounded.jwc_app.models.TransactionAndCartItems;
 
 public class CartViewModel extends AndroidViewModel {
     private CartItemRepository cartItemRepository;
+    private TransactionCartItemRepository transactionCartItemRepository;
     private Long transactionId;
 
     public CartViewModel(@NonNull Application application) {
         super(application);
         this.cartItemRepository = new CartItemRepository(application);
+        this.transactionCartItemRepository = new TransactionCartItemRepository(application);
     }
 
     public Long getTransactionId() {
@@ -26,6 +31,10 @@ public class CartViewModel extends AndroidViewModel {
 
     public void setTransactionId(Long transactionId) {
         this.transactionId = transactionId;
+    }
+
+    public LiveData<TransactionAndCartItems> getReactiveTransactionCartItems() {
+        return this.transactionCartItemRepository.getReactiveTransactionCartItems(this.transactionId);
     }
 
     public LiveData<List<CartItem>> getCartItemList(){

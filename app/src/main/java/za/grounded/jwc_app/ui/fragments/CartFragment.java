@@ -46,9 +46,9 @@ public class CartFragment extends Fragment {
         cartAdapter = new CartAdapter();
         recyclerView.setAdapter(cartAdapter);
 
-        cartViewModel.getCartItemList().observe(getViewLifecycleOwner(), cartItems -> {
-            if (cartItems != null) {
-                cartAdapter.setCartItemList(cartItems);
+        cartViewModel.getReactiveTransactionCartItems().observe(getViewLifecycleOwner(), transactionAndCartItems -> {
+            if (transactionAndCartItems != null) {
+                cartAdapter.setCartItemList(transactionAndCartItems.getCartItemList());
                 cartAdapter.notifyDataSetChanged();
             }
         });

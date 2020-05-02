@@ -3,6 +3,8 @@ package za.grounded.jwc_app.database.repository;
 import android.app.Application;
 import android.os.AsyncTask;
 
+import androidx.lifecycle.LiveData;
+
 import java.util.concurrent.ExecutionException;
 
 import za.grounded.jwc_app.database.JWCDatabase;
@@ -17,7 +19,11 @@ public class TransactionCartItemRepository {
         this.transactionCartItemDao = JWCDatabase.getJwcDatabase(application).transactionCartItemDao();
     }
 
-    public TransactionAndCartItems getTransactionCartItemsById(int transactionId){
+    public LiveData<TransactionAndCartItems> getReactiveTransactionCartItems(Long cartId) {
+        return this.transactionCartItemDao.getReactiveTransactionCartItems(cartId);
+    }
+
+    public TransactionAndCartItems getTransactionCartItemsById(Long transactionId){
         GetTransTransactionCartItemsById task = new GetTransTransactionCartItemsById(this.transactionCartItemDao);
         task.execute(transactionId);
         try {
@@ -30,7 +36,7 @@ public class TransactionCartItemRepository {
         return null;
     }
 
-    private static class GetTransTransactionCartItemsById extends AsyncTask<Integer, Void, TransactionAndCartItems> {
+    private static class GetTransTransactionCartItemsById extends AsyncTask<Long, Void, TransactionAndCartItems> {
 
         private TransactionCartItemDao transactionCartItemDao;
 
@@ -39,8 +45,8 @@ public class TransactionCartItemRepository {
         }
 
         @Override
-        protected TransactionAndCartItems doInBackground(Integer... integers) {
-            return this.transactionCartItemDao.getTransactionCartItems(integers[0]);
+        protected TransactionAndCartItems doInBackground(Long... longs) {
+            return this.transactionCartItemDao.getTransactionCartItems(longs[0]);
         }
     }
 }

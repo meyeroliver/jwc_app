@@ -14,8 +14,8 @@ import lombok.Setter;
 public class Transaction {
 
     @PrimaryKey(autoGenerate = true)
-    private int room_id;
+    private Long room_id;
     private String _id;
-    private double total;
+    private Double total;
     private Date transactionDate;
 }

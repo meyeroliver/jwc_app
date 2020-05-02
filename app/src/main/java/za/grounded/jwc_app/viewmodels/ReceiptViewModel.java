@@ -37,6 +37,6 @@ public class ReceiptViewModel extends AndroidViewModel {
     }
 
     public TransactionAndCartItems getTransactionAndCartItemsById(){
-        return this.transactionCartItemRepository.getTransactionCartItemsById(this.transactionId.intValue());
+        return this.transactionCartItemRepository.getTransactionCartItemsById(this.transactionId);
     }
 }

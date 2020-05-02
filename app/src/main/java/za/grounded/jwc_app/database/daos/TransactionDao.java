@@ -18,17 +18,17 @@ public interface TransactionDao {
     @Query("UPDATE transactions " +
             "SET total = :total " +
             "WHERE room_id = :id")
-    void updateTransactionTotal(int id, double total);
+    void updateTransactionTotal(Long id, Long total);
 
     @Query("UPDATE transactions " +
             "SET transactionDate = :transactionDate " +
             "WHERE room_id = :id")
-    void updateTransactionDate(int id, Date transactionDate);
+    void updateTransactionDate(Long id, Date transactionDate);
 
     @Query("UPDATE transactions " +
             "SET _id = :mongo_id " +
             "WHERE room_id = :id")
-    void updateTransactionMongoId(int id, String mongo_id);
+    void updateTransactionMongoId(Long id, String mongo_id);
 
     /*@Query("SELECT * FROM")
     LiveData<Transaction> getTransactionById(int id);*/
