@@ -46,6 +46,6 @@ public class LandingViewModel extends AndroidViewModel {
     }
 
     public void insertCartItem(Product product){
-        this.cartItemRepository.insertCartItem(new CartItem(this.transactionId, product, 1L));
+        this.cartItemRepository.insertCartItem(new CartItem(product.get_id() ,this.transactionId, product, 1L));
     }
 }

@@ -16,8 +16,10 @@ import lombok.Setter;
 @Setter
 @Entity(tableName = "cart_items")
 public class CartItem {
-    @PrimaryKey(autoGenerate = true)
-    private Long id;
+    @NonNull
+    @PrimaryKey
+    @androidx.annotation.NonNull
+    private String id;
     @NonNull
     private Long transaction_id;
     @NonNull
@@ -25,4 +27,9 @@ public class CartItem {
     private Product product;
     @NonNull
     private Long quantity;
+
+    public CartItem(@androidx.annotation.NonNull @NonNull String id, @NonNull Long quantity) {
+        this.id = id;
+        this.quantity = quantity;
+    }
 }

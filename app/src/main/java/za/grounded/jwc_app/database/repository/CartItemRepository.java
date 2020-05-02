@@ -48,45 +48,43 @@ public class CartItemRepository {
         }
     }
 
-    public void updateCartItemQuantity(Long id, Long val) {
+    public void updateCartItemQuantity(String id, Long quantity) {
         UpdateCartItemQuantity task = new UpdateCartItemQuantity(cartItemDao);
-        Long[] longs = {id, val};
-        task.execute(longs);
-
+        task.execute(new CartItem(id, quantity));
     }
 
-    private static class UpdateCartItemQuantity extends AsyncTask <Long, Void, Void> {
+    private static class UpdateCartItemQuantity extends AsyncTask <CartItem, Void, Void> {
 
         private CartItemDao cartItemDao;
 
-        public UpdateCartItemQuantity(CartItemDao cartItemDao) {
+        UpdateCartItemQuantity(CartItemDao cartItemDao) {
             this.cartItemDao = cartItemDao;
         }
 
-
         @Override
-        protected Void doInBackground(Long... longs) {
-            this.cartItemDao.updateCartItemQuantity(longs[0], longs[1]);
+        protected Void doInBackground(CartItem... cartItems) {
+            CartItem cartItem = cartItems[0];
+            this.cartItemDao.updateCartItemQuantity(cartItem.getId(), cartItem.getQuantity());
             return null;
         }
     }
 
-    public void deleteCartItem(Long id) {
+    public void deleteCartItem(String id) {
         DeleteCartItem task = new DeleteCartItem(cartItemDao);
         task.execute(id);
     }
 
-    private static class DeleteCartItem extends AsyncTask<Long, Void, Void> {
+    private static class DeleteCartItem extends AsyncTask<String, Void, Void> {
 
         private CartItemDao cartItemDao;
 
-        public DeleteCartItem(CartItemDao cartItemDao) {
+        DeleteCartItem(CartItemDao cartItemDao) {
             this.cartItemDao = cartItemDao;
         }
 
         @Override
-        protected Void doInBackground(Long... longs) {
-            this.cartItemDao.deleteCartItem(longs[0]);
+        protected Void doInBackground(String... strings) {
+            this.cartItemDao.deleteCartItem(strings[0]);
             return null;
         }
     }

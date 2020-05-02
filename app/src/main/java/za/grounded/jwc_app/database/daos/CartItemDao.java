@@ -3,6 +3,7 @@ package za.grounded.jwc_app.database.daos;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
@@ -12,19 +13,19 @@ import za.grounded.jwc_app.models.CartItem;
 @Dao
 public interface CartItemDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertCartItem(CartItem cartItem);
 
     @Query("UPDATE cart_items " +
             "SET quantity = quantity + :val " +
             "WHERE id = :id")
-    void updateCartItemQuantity(Long id, Long val);
+    void updateCartItemQuantity(String id, Long val);
 
     @Query("SELECT * FROM cart_items")
     LiveData<List<CartItem>> getCartItemList();
 
     @Query("DELETE FROM cart_items WHERE id = :id")
-    void deleteCartItem(Long id);
+    void deleteCartItem(String id);
 
     @Query("SELECT SUM(quantity * price) AS TOTAL FROM cart_items")
     LiveData<Double> calculateTotalCartPrice();

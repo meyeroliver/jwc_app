@@ -41,7 +41,7 @@ public class CartViewModel extends AndroidViewModel {
         return this.cartItemRepository.getCartItemList();
     }
 
-    public void updateCartItemQuantity(Long id, Long val) {
+    public void updateCartItemQuantity(String id, Long val) {
         this.cartItemRepository.updateCartItemQuantity(id, val);
     }
 
@@ -49,7 +49,7 @@ public class CartViewModel extends AndroidViewModel {
         return this.cartItemRepository.calculateTotalCartPrice();
     }
 
-    public void deleteCartItem(Long id) {
+    public void deleteCartItem(String id) {
         this.cartItemRepository.deleteCartItem(id);
     }
 }
