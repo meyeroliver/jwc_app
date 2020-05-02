@@ -18,13 +18,13 @@ public interface CartItemDao {
     @Query("UPDATE cart_items " +
             "SET quantity = quantity + :val " +
             "WHERE id = :id")
-    void updateCartItemQuantity(int id, int val);
+    void updateCartItemQuantity(Long id, Long val);
 
     @Query("SELECT * FROM cart_items")
     LiveData<List<CartItem>> getCartItemList();
 
     @Query("DELETE FROM cart_items WHERE id = :id")
-    void deleteCartItem(int id);
+    void deleteCartItem(Long id);
 
     @Query("SELECT SUM(quantity * price) AS TOTAL FROM cart_items")
     LiveData<Double> calculateTotalCartPrice();

@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        this.landingViewModel =  new ViewModelProvider(this).get(LandingViewModel.class);
+        this.landingViewModel.setTransactionId(getIntent().getLongExtra(getString(R.string.transaction_id), -1));
+
         viewPager2 = findViewById(R.id.viewpager);
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new ComboMealFragment());
@@ -61,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         RetrofitClientInstance.setRetrofitInstance();
 
-        landingViewModel =  new ViewModelProvider(this).get(LandingViewModel.class);
+
         landingViewModel.getProductList().observe(this, workInfos -> {
             if (workInfos != null) {
                 WorkInfo workInfo = workInfos.get(0);

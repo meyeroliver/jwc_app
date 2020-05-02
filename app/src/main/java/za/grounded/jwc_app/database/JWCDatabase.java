@@ -16,7 +16,7 @@ import za.grounded.jwc_app.models.CartItem;
 import za.grounded.jwc_app.models.Product;
 import za.grounded.jwc_app.models.Transaction;
 
-@Database(entities = {Product.class, CartItem.class, Transaction.class}, version = 3, exportSchema = false)
+@Database(entities = {Product.class, CartItem.class, Transaction.class}, version = 4, exportSchema = false)
 @TypeConverters({DateTypeConverters.class})
 public abstract class JWCDatabase extends RoomDatabase {
     private static JWCDatabase jwcDatabase;

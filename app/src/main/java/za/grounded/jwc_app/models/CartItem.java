@@ -17,8 +17,9 @@ import lombok.Setter;
 @Entity(tableName = "cart_items")
 public class CartItem {
     @PrimaryKey(autoGenerate = true)
-    private int id;
-    private int transaction_id;
+    private Long id;
+    @NonNull
+    private Long transaction_id;
     @NonNull
     @Embedded
     private Product product;

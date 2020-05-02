@@ -20,12 +20,21 @@ public class LandingViewModel extends AndroidViewModel {
     private JWCRepository jwcRepository;
     private ProductRepository productRepository;
     private CartItemRepository cartItemRepository;
+    private Long transactionId;
 
     public LandingViewModel(@NonNull Application application) {
         super(application);
         this.productRepository = new ProductRepository(application);
         this.cartItemRepository = new CartItemRepository(application);
         this.jwcRepository = new JWCRepository(application);
+    }
+
+    public Long getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(Long transactionId) {
+        this.transactionId = transactionId;
     }
 
     public LiveData<List<WorkInfo>> getProductList() {
@@ -37,6 +46,6 @@ public class LandingViewModel extends AndroidViewModel {
     }
 
     public void insertCartItem(Product product){
-        this.cartItemRepository.insertCartItem(new CartItem(product, 1));
+        this.cartItemRepository.insertCartItem(new CartItem(this.transactionId, product, 1));
     }
 }

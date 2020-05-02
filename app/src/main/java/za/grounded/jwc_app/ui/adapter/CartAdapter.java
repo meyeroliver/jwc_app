@@ -23,9 +23,9 @@ import za.grounded.jwc_app.models.CartItem;
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
 
     private List<CartItem> cartItemList = new ArrayList<>();
-    private MutableLiveData<Integer> addItem = new MutableLiveData<>();
-    private MutableLiveData<Integer> removeItem = new MutableLiveData<>();
-    private MutableLiveData<Integer> deleteCartItem = new MutableLiveData<>();
+    private MutableLiveData<Long> addItem = new MutableLiveData<>();
+    private MutableLiveData<Long> removeItem = new MutableLiveData<>();
+    private MutableLiveData<Long> deleteCartItem = new MutableLiveData<>();
 
     @NonNull
     @Override
@@ -64,27 +64,27 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
         this.cartItemList = cartItemList;
     }
 
-    public LiveData<Integer> getAddItem() {
+    public LiveData<Long> getAddItem() {
         return addItem;
     }
 
-    public void setAddItem(int addItem) {
+    public void setAddItem(long addItem) {
         this.addItem.setValue(addItem);
     }
 
-    public LiveData<Integer> getRemoveItem() {
+    public LiveData<Long> getRemoveItem() {
         return removeItem;
     }
 
-    public void setRemoveItem(int removeItem) {
+    public void setRemoveItem(long removeItem) {
         this.removeItem.setValue(removeItem);
     }
 
-    public LiveData<Integer> getDeleteCartItem() {
+    public LiveData<Long> getDeleteCartItem() {
         return deleteCartItem;
     }
 
-    public void setDeleteCartItem(int deleteCartItem) {
+    public void setDeleteCartItem(long deleteCartItem) {
         this.deleteCartItem.setValue(deleteCartItem);
     }
 

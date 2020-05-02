@@ -63,14 +63,14 @@ public class CartFragment extends Fragment {
         });
 
         cartAdapter.getAddItem().observe(getViewLifecycleOwner(), integer -> {
-            cartViewModel.updateCartItemQuantity(integer, 1);
+            cartViewModel.updateCartItemQuantity(integer, 1L);
         });
 
         /**
          * Check if the current quantity is zero
          */
         cartAdapter.getRemoveItem().observe(getViewLifecycleOwner(), integer -> {
-            cartViewModel.updateCartItemQuantity(integer, -1);
+            cartViewModel.updateCartItemQuantity(integer, -1L);
         });
     }
 }

@@ -1,5 +1,6 @@
 package za.grounded.jwc_app.database.daos;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -28,5 +29,8 @@ public interface TransactionDao {
             "SET _id = :mongo_id " +
             "WHERE room_id = :id")
     void updateTransactionMongoId(int id, String mongo_id);
+
+    /*@Query("SELECT * FROM")
+    LiveData<Transaction> getTransactionById(int id);*/
 
 }

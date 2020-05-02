@@ -48,14 +48,14 @@ public class CartItemRepository {
         }
     }
 
-    public void updateCartItemQuantity(int id, int val) {
+    public void updateCartItemQuantity(Long id, Long val) {
         UpdateCartItemQuantity task = new UpdateCartItemQuantity(cartItemDao);
-        Integer[] integers = {id, val};
-        task.execute(integers);
+        Long[] longs = {id, val};
+        task.execute(longs);
 
     }
 
-    private static class UpdateCartItemQuantity extends AsyncTask <Integer, Void, Void> {
+    private static class UpdateCartItemQuantity extends AsyncTask <Long, Void, Void> {
 
         private CartItemDao cartItemDao;
 
@@ -65,18 +65,18 @@ public class CartItemRepository {
 
 
         @Override
-        protected Void doInBackground(Integer... integers) {
-            this.cartItemDao.updateCartItemQuantity(integers[0], integers[1]);
+        protected Void doInBackground(Long... longs) {
+            this.cartItemDao.updateCartItemQuantity(longs[0], longs[1]);
             return null;
         }
     }
 
-    public void deleteCartItem(int id) {
+    public void deleteCartItem(Long id) {
         DeleteCartItem task = new DeleteCartItem(cartItemDao);
         task.execute(id);
     }
 
-    private static class DeleteCartItem extends AsyncTask<Integer, Void, Void> {
+    private static class DeleteCartItem extends AsyncTask<Long, Void, Void> {
 
         private CartItemDao cartItemDao;
 
@@ -85,8 +85,8 @@ public class CartItemRepository {
         }
 
         @Override
-        protected Void doInBackground(Integer... integers) {
-            this.cartItemDao.deleteCartItem(integers[0]);
+        protected Void doInBackground(Long... longs) {
+            this.cartItemDao.deleteCartItem(longs[0]);
             return null;
         }
     }
