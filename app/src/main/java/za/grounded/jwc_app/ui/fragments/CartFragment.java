@@ -58,19 +58,30 @@ public class CartFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        cartAdapter.getDeleteCartItem().observe(getViewLifecycleOwner(), integer -> {
-            cartViewModel.deleteCartItem(integer);
+        cartAdapter.getDeleteCartItem().observe(getViewLifecycleOwner(), s -> {
+            if (s != null) {
+                cartViewModel.deleteCartItem(s);
+                cartAdapter.setDeleteCartItem(null);
+            }
         });
 
-        cartAdapter.getAddItem().observe(getViewLifecycleOwner(), integer -> {
-            cartViewModel.updateCartItemQuantity(integer, 1L);
+        cartAdapter.getAddItem().observe(getViewLifecycleOwner(), s -> {
+            if (s != null) {
+                cartViewModel.updateCartItemQuantity(s, 1L);
+                cartAdapter.setAddItem(null);
+            }
+
         });
 
         /**
          * Check if the current quantity is zero
          */
-        cartAdapter.getRemoveItem().observe(getViewLifecycleOwner(), integer -> {
-            cartViewModel.updateCartItemQuantity(integer, -1L);
+        cartAdapter.getRemoveItem().observe(getViewLifecycleOwner(), s -> {
+            if (s != null) {
+                cartViewModel.updateCartItemQuantity(s, -1L);
+                cartAdapter.setRemoveItem(null);
+            }
+
         });
     }
 }
