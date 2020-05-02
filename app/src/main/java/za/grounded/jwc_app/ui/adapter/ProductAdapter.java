@@ -65,7 +65,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
         private MaterialButton addToCart;
         private Product product;
 
-        public ProductHolder(@NonNull View itemView) {
+        ProductHolder(@NonNull View itemView) {
             super(itemView);
 
             this.initViews();
