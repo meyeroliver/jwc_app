@@ -9,7 +9,9 @@ import androidx.work.WorkInfo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private LandingViewModel landingViewModel;
     private ViewPager2 viewPager2;
     private TabLayout tabLayout;
+    private Button viewCartButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +42,16 @@ public class MainActivity extends AppCompatActivity {
         this.landingViewModel.setTransactionId(getIntent().getLongExtra(getString(R.string.transaction_id), -1));
 
         viewPager2 = findViewById(R.id.viewpager);
+        tabLayout = findViewById(R.id.tab_layout);
+        viewCartButton = findViewById(R.id.view_cart);
+
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new ComboMealFragment());
         fragmentList.add(new FullMealFragment());
         fragmentList.add(new HalfMealFragment());
         viewPager2.setAdapter(new TabAdapter(this, fragmentList));
 
-        tabLayout = findViewById(R.id.tab_layout);
+
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager2,
                 (tab, position) -> {
                     switch (position) {
@@ -64,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
         RetrofitClientInstance.setRetrofitInstance();
 
-
         landingViewModel.getProductList().observe(this, workInfos -> {
             if (workInfos != null) {
                 WorkInfo workInfo = workInfos.get(0);
@@ -81,5 +86,18 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), CartActivity.class);
         intent.putExtra(getString(R.string.transaction_id), this.landingViewModel.getTransactionId());
         startActivity(intent);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        this.landingViewModel.getReactiveTransactionCartItems().observe(this, transactionAndCartItems -> {
+            if (transactionAndCartItems.getCartItemList().size() > 0) {
+                viewCartButton.setVisibility(View.VISIBLE);
+            } else {
+                viewCartButton.setVisibility(View.GONE);
+            }
+        });
     }
 }

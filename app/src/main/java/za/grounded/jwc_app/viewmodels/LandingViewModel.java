@@ -11,8 +11,10 @@ import java.util.List;
 
 import za.grounded.jwc_app.database.repository.CartItemRepository;
 import za.grounded.jwc_app.database.repository.ProductRepository;
+import za.grounded.jwc_app.database.repository.TransactionCartItemRepository;
 import za.grounded.jwc_app.models.CartItem;
 import za.grounded.jwc_app.models.Product;
+import za.grounded.jwc_app.models.TransactionAndCartItems;
 import za.grounded.jwc_app.services.repository.JWCRepository;
 
 public class LandingViewModel extends AndroidViewModel {
@@ -20,12 +22,14 @@ public class LandingViewModel extends AndroidViewModel {
     private JWCRepository jwcRepository;
     private ProductRepository productRepository;
     private CartItemRepository cartItemRepository;
+    private TransactionCartItemRepository transactionCartItemRepository;
     private Long transactionId;
 
     public LandingViewModel(@NonNull Application application) {
         super(application);
         this.productRepository = new ProductRepository(application);
         this.cartItemRepository = new CartItemRepository(application);
+        this.transactionCartItemRepository =  new TransactionCartItemRepository(application);
         this.jwcRepository = new JWCRepository(application);
     }
 
@@ -47,5 +51,9 @@ public class LandingViewModel extends AndroidViewModel {
 
     public void insertCartItem(Product product){
         this.cartItemRepository.insertCartItem(new CartItem(product.get_id() ,this.transactionId, product, 1L));
+    }
+
+    public LiveData<TransactionAndCartItems> getReactiveTransactionCartItems() {
+        return this.transactionCartItemRepository.getReactiveTransactionCartItems(this.transactionId);
     }
 }
