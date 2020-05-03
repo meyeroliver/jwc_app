@@ -20,4 +20,5 @@
     <string name="how_may_i_help_you">How May I help You ?</string>
     <string name="transaction_id">TRANSACTION_ID</string>
     <string name="associate_user">Associate User</string>
+    <string name="add_user_details">ADD USER DETAILS</string>
 </resources>

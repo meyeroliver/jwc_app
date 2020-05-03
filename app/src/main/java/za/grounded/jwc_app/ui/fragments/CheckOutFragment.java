@@ -78,11 +78,17 @@ public class CheckOutFragment extends Fragment implements View.OnClickListener {
      */
     private void placeOrder(){
         List<String> stringList = new ArrayList<>();
+/*
         stringList.add("User 1");
         stringList.add("User 2");
         stringList.add("User 3");
         stringList.add("User 4");
         stringList.add("new User");
+*/
+
+        if (stringList.isEmpty()) {
+            stringList.add(getString(string.add_user_details));
+        }
 
         ArrayAdapter<String> userAdapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
                 layout.select_user_item, id.user_item, stringList);
@@ -90,7 +96,7 @@ public class CheckOutFragment extends Fragment implements View.OnClickListener {
         new MaterialAlertDialogBuilder(Objects.requireNonNull(getContext()))
                 .setTitle(string.associate_user)
                 .setAdapter(userAdapter, (dialog, which) -> {
-                    if (!userAdapter.getItem(which).equals("new User")) {
+                    if (!getString(string.add_user_details).equals(userAdapter.getItem(which))) {
                         Intent intent = new Intent(getActivity(), ReceiptActivity.class);
                         intent.putExtra(getString(string.transaction_id), this.cartViewModel.getTransactionId());
                         startActivity(intent);
