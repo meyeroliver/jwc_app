@@ -77,7 +77,6 @@ public class CheckOutFragment extends Fragment implements View.OnClickListener {
      * false -> go to create user page
      */
     private void placeOrder(){
-        CharSequence[] items = {"User 1", "user 2", "User 3", "New User"};
         List<String> stringList = new ArrayList<>();
         stringList.add("User 1");
         stringList.add("User 2");
