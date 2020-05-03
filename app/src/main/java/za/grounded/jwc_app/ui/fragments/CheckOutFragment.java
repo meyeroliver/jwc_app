@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Objects;
 
 import za.grounded.jwc_app.R;
+import za.grounded.jwc_app.ui.activities.ProfileActivity;
 import za.grounded.jwc_app.ui.activities.ReceiptActivity;
 import za.grounded.jwc_app.viewmodels.CartViewModel;
 
@@ -101,7 +102,9 @@ public class CheckOutFragment extends Fragment implements View.OnClickListener {
                         intent.putExtra(getString(string.transaction_id), this.cartViewModel.getTransactionId());
                         startActivity(intent);
                     } else {
-                        Toast.makeText(getContext(), "Please add user info", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                        intent.putExtra(getString(string.new_user_flag), true);
+                        startActivity(intent);
                     }
                 })
                 .show();

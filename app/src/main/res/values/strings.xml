@@ -21,4 +21,5 @@
     <string name="transaction_id">TRANSACTION_ID</string>
     <string name="associate_user">Associate User</string>
     <string name="add_user_details">ADD USER DETAILS</string>
+    <string name="new_user_flag">NEW_USER_FLAG</string>
 </resources>
