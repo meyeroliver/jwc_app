@@ -3,6 +3,8 @@
     package="za.grounded.jwc_app">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -10,7 +12,12 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/JWCTheme"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        >
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/places_api_key"/><!--Get a more secure way of using the keys-->
+
         <activity android:name=".ui.activities.ProfileActivity"></activity>
         <activity android:name=".ui.activities.WelcomeActivity">
             <intent-filter>

@@ -24,4 +24,5 @@
     <string name="new_user_flag">NEW_USER_FLAG</string>
     <string name="cellphone_number">CELLPHONE NUMBER</string>
     <string name="email_address">EMAIL ADDRESS</string>
+    <string name="places_api_key">AIzaSyB6b4Ba-SQSgM_5uLmYXCzY2prA22FV8QY</string>
 </resources>
