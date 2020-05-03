@@ -44,8 +44,9 @@ dependencies {
      * Google
      */
     implementation 'com.google.android.gms:play-services-auth:18.0.0'
+    implementation 'com.google.android.libraries.places:places:2.2.0'
 
-
+//AIzaSyB6b4Ba-SQSgM_5uLmYXCzY2prA22FV8QY
     /**
      * WorkManager
      */
