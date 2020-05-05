@@ -14,11 +14,8 @@
         android:theme="@style/JWCTheme"
         android:usesCleartextTraffic="true"
         >
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/places_api_key"/><!--Get a more secure way of using the keys-->
 
-        <activity android:name=".ui.activities.ProfileActivity"></activity>
+        <activity android:name=".ui.activities.ProfileActivity"/>
         <activity android:name=".ui.activities.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
