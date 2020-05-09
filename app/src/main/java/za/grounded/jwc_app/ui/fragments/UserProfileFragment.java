@@ -80,7 +80,7 @@ public class UserProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         this.initViews(view);
-        this.initPlaces();
+        //this.initPlaces();
     }
 
     @Override
@@ -106,7 +106,7 @@ public class UserProfileFragment extends Fragment {
      */
     private void initPlaces() {
         // Initialize Places.
-        Places.initialize(Objects.requireNonNull(getContext()), getString(R.string.places_api_key));
+        Places.initialize(Objects.requireNonNull(getContext()), ""/*getString(R.string.places_api_key)*/);
 
         // Create a new Places client instance.
         placesClient = Places.createClient(getContext());
@@ -132,11 +132,12 @@ public class UserProfileFragment extends Fragment {
             if (aBoolean != null) {
 
                 if (aBoolean) {
-
+                    getCurrentLocationFromGPS();
                 } else {
                     /**
                      * Display Button to enable location
                      */
+                    Toast.makeText(getContext(), "awe", Toast.LENGTH_SHORT).show();
                 }
             }
         });
