@@ -13,7 +13,7 @@ import za.grounded.jwc_app.models.CartItem;
 @Dao
 public interface CartItemDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertCartItem(CartItem cartItem);
 
     @Query("UPDATE cart_items " +

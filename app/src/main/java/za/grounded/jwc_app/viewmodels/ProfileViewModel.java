@@ -23,4 +23,19 @@ public class ProfileViewModel extends AndroidViewModel {
     public void setLocationPermission(boolean locationPermission) {
         this.locationPermission.setValue(locationPermission);
     }
+    
+    public String validateIsEmpty(String userInput){
+        if (userInput.isEmpty()) {
+            return "User Input Required";
+        }
+        return null;
+    }
+
+    public String validCellNumber(String userInput) {
+        if (userInput.length() == 10 || (userInput.length() ==  12 && userInput.startsWith("+27"))) {
+            return null;
+        } else{
+            return "Invalid Number";
+        }
+    }
 }

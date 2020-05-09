@@ -62,7 +62,7 @@
         android:hint="@string/cellphone_number"
         android:windowSoftInputMode="adjustPan"
 
-        app:startIconDrawable="@drawable/ic_person_24dp">
+        app:startIconDrawable="@drawable/ic_phone_24dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/cell_number"
@@ -75,47 +75,67 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/email_layout"
+        android:id="@+id/address_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:hint="@string/delivery_address"
+        android:windowSoftInputMode="adjustPan"
+
+        app:startIconDrawable="@drawable/ic_room_24dp">
+
+        <AutoCompleteTextView
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:completionThreshold="3"
+            android:imeOptions="actionSearch"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <!--<ViewAnimator
+        android:id="@+id/view_animator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.15"
+            android:textSize="20sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </ViewAnimator>
+-->
+
+    <!--<com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/address_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:hint="@string/email_address"
+        android:hint="@string/delivery_address"
         android:windowSoftInputMode="adjustPan"
 
         app:startIconDrawable="@drawable/ic_person_24dp"
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/email"
+            android:id="@+id/address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:singleLine="true"
             />
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!--<com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/confirmPasswordLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:hint="@string/confirm_password"
-        android:windowSoftInputMode="adjustPan"
-
-        app:startIconDrawable="@drawable/ic_person_24dp"
-        app:passwordToggleEnabled="true">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/confirmPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:singleLine="true"
-            />
     </com.google.android.material.textfield.TextInputLayout>
 -->
 </LinearLayout>
