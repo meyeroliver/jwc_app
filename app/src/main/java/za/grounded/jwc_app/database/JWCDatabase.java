@@ -12,11 +12,14 @@ import za.grounded.jwc_app.database.daos.CartItemDao;
 import za.grounded.jwc_app.database.daos.ProductDao;
 import za.grounded.jwc_app.database.daos.TransactionCartItemDao;
 import za.grounded.jwc_app.database.daos.TransactionDao;
+import za.grounded.jwc_app.database.daos.UserDao;
 import za.grounded.jwc_app.models.CartItem;
 import za.grounded.jwc_app.models.Product;
 import za.grounded.jwc_app.models.Transaction;
+import za.grounded.jwc_app.models.User;
 
-@Database(entities = {Product.class, CartItem.class, Transaction.class}, version = 7, exportSchema = false)
+@Database(entities = {Product.class, CartItem.class, Transaction.class,
+                    User.class}, version = 8, exportSchema = false)
 @TypeConverters({DateTypeConverters.class})
 public abstract class JWCDatabase extends RoomDatabase {
     private static JWCDatabase jwcDatabase;
@@ -25,6 +28,7 @@ public abstract class JWCDatabase extends RoomDatabase {
     public abstract CartItemDao cartItemDao();
     public abstract TransactionDao transactionDao();
     public abstract TransactionCartItemDao transactionCartItemDao();
+    public abstract UserDao userDao();
 
     public static  synchronized JWCDatabase getJwcDatabase(Context context) {
         if (jwcDatabase == null) {

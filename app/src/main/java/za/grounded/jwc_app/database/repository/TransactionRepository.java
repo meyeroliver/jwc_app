@@ -22,9 +22,7 @@ public class TransactionRepository {
         task.execute(transaction);
         try {
             return task.get();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
         return null;

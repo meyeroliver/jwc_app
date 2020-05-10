@@ -1,6 +1,7 @@
 package za.grounded.jwc_app.models;
 
 import androidx.room.Embedded;
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import lombok.Getter;
@@ -10,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+@Entity(tableName = "users")
 public class User {
     @PrimaryKey(autoGenerate = true)
     private Long id;
