@@ -15,10 +15,12 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import za.grounded.jwc_app.R;
+import za.grounded.jwc_app.models.User;
 import za.grounded.jwc_app.ui.fragments.UserProfileFragment;
 import za.grounded.jwc_app.viewmodels.ProfileViewModel;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static android.Manifest.permission.INTERNET;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -65,6 +67,12 @@ public class ProfileActivity extends AppCompatActivity {
                 ACCESS_FINE_LOCATION_PERMISSION);
     }
 
+    private void getInternetPermission() {
+        /**
+         * TODO: Check Internet Permission
+         */
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -86,8 +94,26 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * TODO: check internet connection
+     * TODO: validate user input
+     * TODO: take user to recieptActivity to  confirm order
+     *
+     * @param view
+     */
     public void createNewUser(View view) {
-        Toast.makeText(this, R.string.create_user, Toast.LENGTH_SHORT).show();
+
+        this.profileViewModel.setUserInput(true);
+        this.profileViewModel.getCreateNewUser().observe(this, aBoolean -> {
+
+            if (aBoolean != null) {
+                if (aBoolean) {
+                    User user = profileViewModel.getNewUser();
+
+                    Toast.makeText(this, user.getUsername(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     public void enableLocation(View view) {

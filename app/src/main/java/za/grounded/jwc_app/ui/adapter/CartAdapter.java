@@ -27,11 +27,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
     private MutableLiveData<String> removeItem = new MutableLiveData<>();
     private MutableLiveData<String> deleteCartItem = new MutableLiveData<>();
 
+
+
     @NonNull
     @Override
     public CartHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.cart_item, parent, false);
+                   .inflate(R.layout.cart_item, parent, false);
 
         return new CartHolder(view);
     }

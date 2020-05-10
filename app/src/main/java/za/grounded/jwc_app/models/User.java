@@ -3,6 +3,13 @@ package za.grounded.jwc_app.models;
 import androidx.room.Embedded;
 import androidx.room.PrimaryKey;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@Getter
+@Setter
 public class User {
     @PrimaryKey(autoGenerate = true)
     private Long id;
@@ -11,7 +18,7 @@ public class User {
     private String name;
     private String surname;
     private String cellNumber;
-    private String emailAdress;
+    private String address;
     @Embedded
     private MyLocation location;
     private String username; // name + surname

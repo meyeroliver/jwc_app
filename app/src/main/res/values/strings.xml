@@ -29,4 +29,26 @@
     <string name="out_bounds">AREA OUT OF REACH</string>
     <string name="create_user">CREATE USER</string>
     <string name="enable_device_location">Enable Device Location</string>
+
+    <string-array name="address_validator_1">
+        <item>street</item>
+        <item>str</item>
+        <item>road</item>
+        <item>rd</item>
+        <item>thoroughfare</item>
+        <item>way</item>
+        <item>avenue</item>
+        <item>ave</item>
+        <item>drive</item>
+        <item>drive</item>
+        <item>row</item>
+        <item>crescent</item>
+        <item>terrace</item>
+        <item>close</item>
+        <item>parade</item>
+        <item>side street</item>
+        <item>side road</item>
+        <item>alley</item>
+        <item>boulevard</item>
+    </string-array>
 </resources>

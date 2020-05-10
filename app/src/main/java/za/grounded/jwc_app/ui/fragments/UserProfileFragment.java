@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +19,6 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.AutocompleteSessionToken;
 import com.google.android.libraries.places.api.model.Place;
@@ -34,11 +32,10 @@ import java.util.List;
 import java.util.Objects;
 
 import za.grounded.jwc_app.R;
+import za.grounded.jwc_app.models.MyLocation;
+import za.grounded.jwc_app.models.User;
 import za.grounded.jwc_app.ui.adapter.PlaceAutocompleteAdapterNew;
-import za.grounded.jwc_app.ui.adapter.PlacePredictionAdapter;
 import za.grounded.jwc_app.viewmodels.ProfileViewModel;
-
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,7 +60,7 @@ public class UserProfileFragment extends Fragment {
     private TextInputLayout cellnumberLayout;
     private TextView cellphone;
     private TextInputLayout addressLayout;
-    private AutoCompleteTextView address;
+    private TextView address;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,6 +84,7 @@ public class UserProfileFragment extends Fragment {
     public void onStart() {
         super.onStart();
         this.makeRequestForPlace();
+        this.consumeUserInput();
     }
 
     private void initViews(View view) {
@@ -98,6 +96,66 @@ public class UserProfileFragment extends Fragment {
         cellphone = view.findViewById(R.id.cell_number);
         addressLayout = view.findViewById(R.id.address_layout);
         address = view.findViewById(R.id.address);
+    }
+
+    private void consumeUserInput() {
+        this.profileViewModel.getUserInput().observe(getActivity(), aBoolean -> {
+
+            if (aBoolean != null) {
+                if (aBoolean) {
+
+                    resetTextInputLayout();
+
+                    String name = this.name.getText().toString();
+                    String surname = this.surname.getText().toString();
+                    String cellphone = this.cellphone.getText().toString();
+                    String address = this.address.getText().toString();
+
+
+                    boolean nameEmpty = displayInputError(profileViewModel.validateIsEmpty(name), nameLayout);
+
+                    boolean surnameEmpty = displayInputError(profileViewModel.validateIsEmpty(surname), surnameLayout);
+
+                    boolean cellNumberEmpty = displayInputError(profileViewModel.validateIsEmpty(cellphone), cellnumberLayout);
+                    boolean cellNumberNotValid = displayInputError(profileViewModel.validCellNumber(cellphone), cellnumberLayout);
+
+                    boolean addressEmpty = displayInputError(profileViewModel.validateIsEmpty(address), addressLayout);
+                    boolean addressNotValid = displayInputError(profileViewModel.validAddressLength(address,
+                            Arrays.asList(getResources().getStringArray(R.array.address_validator_1))),
+                            addressLayout);
+
+                    if (!nameEmpty && !surnameEmpty && !cellNumberEmpty && !cellNumberNotValid
+                    && !addressEmpty && !addressNotValid) {
+                        User createNewUser = new User();
+                        createNewUser.setName(name);
+                        createNewUser.setSurname(surname);
+                        createNewUser.setUsername(name + " " + surname);
+                        createNewUser.setCellNumber(cellphone);
+                        createNewUser.setAddress(address);
+                        createNewUser.setLocation(profileViewModel.getMyLocation());
+                        profileViewModel.setNewUser(createNewUser);
+                        profileViewModel.setCreateNewUser(true);
+                    }
+                    profileViewModel.setUserInput(null);
+                }
+            }
+        });
+    }
+
+    private boolean displayInputError(String validation, TextInputLayout textInputLayout) {
+        if (validation != null) {
+            textInputLayout.setErrorEnabled(true);
+            textInputLayout.setError(validation);
+            return true;
+        }
+        return false;
+    }
+
+    private void resetTextInputLayout() {
+        nameLayout.setErrorEnabled(false);
+        surnameLayout.setErrorEnabled(false);
+        cellnumberLayout.setErrorEnabled(false);
+        addressLayout.setErrorEnabled(false);
     }
 
     /**
@@ -123,7 +181,7 @@ public class UserProfileFragment extends Fragment {
         AutocompleteSessionToken autocompleteSessionToken;
         autocompleteSessionToken=AutocompleteSessionToken.newInstance();
         placeAutocompleteAdapterNew = new PlaceAutocompleteAdapterNew(getContext(), placesClient, autocompleteSessionToken);
-        address.setAdapter(placeAutocompleteAdapterNew);
+        //address.setAdapter(placeAutocompleteAdapterNew);
     }
 
     private void makeRequestForPlace() {
@@ -133,11 +191,6 @@ public class UserProfileFragment extends Fragment {
 
                 if (aBoolean) {
                     getCurrentLocationFromGPS();
-                } else {
-                    /**
-                     * Display Button to enable location
-                     */
-                    Toast.makeText(getContext(), "awe", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -148,9 +201,7 @@ public class UserProfileFragment extends Fragment {
                 .addOnSuccessListener(Objects.requireNonNull(getActivity()), location -> {
                     // Got last known location. In some rare situations this can be null.
                     if (location != null) {
-                        // Logic to handle location object
-                        System.out.println("Lat : " + location.getLatitude() + ", Lng : " + location.getLongitude());
-                        Toast.makeText(getContext(), "Lat : " + location.getLatitude() + ", Lng : " + location.getLongitude(), Toast.LENGTH_SHORT).show();
+                        profileViewModel.setMyLocation(new MyLocation(location.getLatitude(), location.getLongitude()));
                     }
                 });
     }
