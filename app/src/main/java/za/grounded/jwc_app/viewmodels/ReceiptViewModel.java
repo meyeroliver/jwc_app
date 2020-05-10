@@ -39,4 +39,8 @@ public class ReceiptViewModel extends AndroidViewModel {
     public TransactionAndCartItems getTransactionAndCartItemsById(){
         return this.transactionCartItemRepository.getTransactionCartItemsById(this.transactionId);
     }
+
+    public LiveData<Double> calculateTotalCartPrice() {
+        return this.cartItemRepository.calculateTotalCartPrice(transactionId);
+    }
 }

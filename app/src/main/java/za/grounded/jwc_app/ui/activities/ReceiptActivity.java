@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import za.grounded.jwc_app.R;
+import za.grounded.jwc_app.ui.fragments.CheckOutFragment;
+import za.grounded.jwc_app.ui.fragments.ConfirmOrderFragment;
 import za.grounded.jwc_app.ui.fragments.ReceiptFragment;
 import za.grounded.jwc_app.viewmodels.ReceiptViewModel;
 
@@ -28,14 +30,12 @@ public class ReceiptActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction
                 .replace(R.id.receipt, new ReceiptFragment())
+                .replace(R.id.confirm_order, new ConfirmOrderFragment())
                 .commit();
-
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        //Toast.makeText(this, this.receiptViewModel.getTransactionId().toString(), Toast.LENGTH_SHORT).show();
     }
 }

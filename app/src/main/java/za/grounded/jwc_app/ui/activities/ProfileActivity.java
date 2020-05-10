@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +36,9 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         this.profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+
+        this.profileViewModel.setTransactionId(getIntent()
+                .getLongExtra(getString(R.string.transaction_id), -1));
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -111,14 +115,16 @@ public class ProfileActivity extends AppCompatActivity {
                     User user = profileViewModel.getNewUser();
                     profileViewModel.insertUser(user);
 
-                    Toast.makeText(this, user.getUsername(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(ProfileActivity.this, ReceiptActivity.class);
+                    intent.putExtra(getString(R.string.username), user.getUsername());
+                    intent.putExtra(getString(R.string.transaction_id), profileViewModel.getTransactionId());
+                    startActivity(intent);
                 }
             }
         });
     }
 
     public void enableLocation(View view) {
-        //Toast.makeText(this, R.string.enable_device_location, Toast.LENGTH_SHORT).show();
         this.checkLocationPermissions();
     }
 }

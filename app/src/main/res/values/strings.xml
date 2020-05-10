@@ -29,6 +29,7 @@
     <string name="out_bounds">AREA OUT OF REACH</string>
     <string name="create_user">CREATE USER</string>
     <string name="enable_device_location">Enable Device Location</string>
+    <string name="confirm_order">CONFIRM ORDER</string>
 
     <string-array name="address_validator_1">
         <item>street</item>

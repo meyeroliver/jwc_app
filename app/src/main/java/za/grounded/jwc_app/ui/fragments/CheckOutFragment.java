@@ -65,7 +65,6 @@ public class CheckOutFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.place_order_button) {
-            System.out.println("awe mothersChild hond balf");
             this.placeOrder();
         }
     }
@@ -99,6 +98,7 @@ public class CheckOutFragment extends Fragment implements View.OnClickListener {
                     } else {
                         Intent intent = new Intent(getActivity(), ProfileActivity.class);
                         intent.putExtra(getString(string.new_user_flag), true);
+                        intent.putExtra(getString(string.transaction_id), this.cartViewModel.getTransactionId());
                         startActivity(intent);
                     }
                 })

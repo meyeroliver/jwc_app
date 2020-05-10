@@ -18,6 +18,7 @@ public class ProfileViewModel extends AndroidViewModel {
     private MutableLiveData<Boolean> locationPermission = new MutableLiveData<>();
     private MutableLiveData<Boolean> createNewUser = new MutableLiveData<>();
     private MutableLiveData<Boolean> userInput = new MutableLiveData<>();
+    private Long transactionId;
     private UserRepository userRepository;
     private User newUser;
     private MyLocation myLocation;
@@ -26,6 +27,14 @@ public class ProfileViewModel extends AndroidViewModel {
 
         super(application);
         this.userRepository = new UserRepository(application);
+    }
+
+    public Long getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(Long transactionId) {
+        this.transactionId = transactionId;
     }
 
     public void insertUser(User user) {
