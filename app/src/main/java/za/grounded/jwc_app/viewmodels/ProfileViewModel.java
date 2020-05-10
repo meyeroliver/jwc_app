@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
+import za.grounded.jwc_app.database.repository.UserRepository;
 import za.grounded.jwc_app.models.MyLocation;
 import za.grounded.jwc_app.models.User;
 
@@ -17,11 +18,18 @@ public class ProfileViewModel extends AndroidViewModel {
     private MutableLiveData<Boolean> locationPermission = new MutableLiveData<>();
     private MutableLiveData<Boolean> createNewUser = new MutableLiveData<>();
     private MutableLiveData<Boolean> userInput = new MutableLiveData<>();
+    private UserRepository userRepository;
     private User newUser;
     private MyLocation myLocation;
 
     public ProfileViewModel(@NonNull Application application) {
+
         super(application);
+        this.userRepository = new UserRepository(application);
+    }
+
+    public void insertUser(User user) {
+        this.userRepository.insertUser(user);
     }
 
     public User getNewUser() {

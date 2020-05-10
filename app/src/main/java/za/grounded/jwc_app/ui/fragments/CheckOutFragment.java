@@ -78,18 +78,13 @@ public class CheckOutFragment extends Fragment implements View.OnClickListener {
      * false -> go to create user page
      */
     private void placeOrder(){
-        List<String> stringList = new ArrayList<>();
-/*
-        stringList.add("User 1");
-        stringList.add("User 2");
-        stringList.add("User 3");
-        stringList.add("User 4");
-        stringList.add("new User");
-*/
+        List<String> stringList = this.cartViewModel.getUsernameList();
 
-        if (stringList.isEmpty()) {
-            stringList.add(getString(string.add_user_details));
+        if (stringList == null) {
+            stringList = new ArrayList<>();
         }
+        stringList.add(getString(string.add_user_details));
+
 
         ArrayAdapter<String> userAdapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
                 layout.select_user_item, id.user_item, stringList);

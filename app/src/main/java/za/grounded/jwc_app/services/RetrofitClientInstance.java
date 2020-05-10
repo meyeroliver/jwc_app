@@ -9,7 +9,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 public class RetrofitClientInstance {
     private static Retrofit retrofit;
-    private static final String BASE_URL = "http://10.0.0.6:3000";
+    private static final String BASE_URL = "http://10.0.0.12:3000";
 
     public static Retrofit setRetrofitInstance() {
         if (retrofit == null) {

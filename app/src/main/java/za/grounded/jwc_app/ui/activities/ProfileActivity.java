@@ -109,6 +109,7 @@ public class ProfileActivity extends AppCompatActivity {
             if (aBoolean != null) {
                 if (aBoolean) {
                     User user = profileViewModel.getNewUser();
+                    profileViewModel.insertUser(user);
 
                     Toast.makeText(this, user.getUsername(), Toast.LENGTH_SHORT).show();
                 }

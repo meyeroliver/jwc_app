@@ -12,13 +12,16 @@ import za.grounded.jwc_app.database.daos.TransactionCartItemDao;
 import za.grounded.jwc_app.database.repository.CartItemRepository;
 import za.grounded.jwc_app.database.repository.TransactionCartItemRepository;
 import za.grounded.jwc_app.database.repository.TransactionRepository;
+import za.grounded.jwc_app.database.repository.UserRepository;
 import za.grounded.jwc_app.models.CartItem;
 import za.grounded.jwc_app.models.TransactionAndCartItems;
+import za.grounded.jwc_app.models.User;
 
 public class CartViewModel extends AndroidViewModel {
     private CartItemRepository cartItemRepository;
     private TransactionCartItemRepository transactionCartItemRepository;
     private TransactionRepository transactionRepository;
+    private UserRepository userRepository;
     private Long transactionId;
 
     public CartViewModel(@NonNull Application application) {
@@ -26,6 +29,7 @@ public class CartViewModel extends AndroidViewModel {
         this.cartItemRepository = new CartItemRepository(application);
         this.transactionRepository = new TransactionRepository(application);
         this.transactionCartItemRepository = new TransactionCartItemRepository(application);
+        this.userRepository = new UserRepository(application);
     }
 
     public Long getTransactionId() {
@@ -38,6 +42,14 @@ public class CartViewModel extends AndroidViewModel {
 
     public LiveData<TransactionAndCartItems> getReactiveTransactionCartItems() {
         return this.transactionCartItemRepository.getReactiveTransactionCartItems(this.transactionId);
+    }
+
+    public List<String> getUsernameList(){
+        return this.userRepository.getUsernameList();
+    }
+
+    public User getUserByUsername(String username){
+        return this.userRepository.getUserByUsername(username);
     }
 
     public LiveData<List<CartItem>> getCartItemList(){
