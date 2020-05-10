@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#006DA7</color>
+    <color name="colorPrimaryDark">#004080</color>
+    <color name="colorAccent">#00BF9D</color>
+    <color name="colorAccent1">#83E07F</color>
+    <color name="colorAccent2">#F9F871</color>
     <color name="recyclerGray">#FFDDDDDD</color>
     <color name="jwcCream">#f4e6cd</color>
-    <color name="jwcBlueOceanDark">#004080</color>
+   <!-- <color name="jwcBlueOceanDark">#004080</color>-->
+
+    <!--<color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>-->
 </resources>

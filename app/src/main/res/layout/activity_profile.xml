@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/jwcCream"
     tools:context=".ui.activities.ProfileActivity">
 
     <FrameLayout
@@ -22,7 +23,7 @@
         android:text="@string/create_user"
         android:gravity="center"
         android:onClick="createNewUser"
-        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
+        android:background="@color/colorPrimary"
 
         app:icon="@drawable/ic_person_add_24dp"
         app:iconGravity="textStart"

@@ -37,11 +37,10 @@
         android:gravity="center"
         android:onClick="viewCart"
         android:visibility="gone"
-        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
+        android:background="@color/colorPrimary"
 
         app:icon="@drawable/ic_shopping_cart_24dp"
         app:iconGravity="textStart"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />

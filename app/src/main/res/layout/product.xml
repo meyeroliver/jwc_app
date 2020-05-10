@@ -61,7 +61,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/colorAccent" />
+            android:background="@color/colorAccent1" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/add_to_cart"
